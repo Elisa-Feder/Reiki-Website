@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elisa Federsel · Reiki</title>
+  <meta name="description" content="Reiki-Behandlungen mit Elisa Federsel — für Körper, Geist & Seele. Jetzt Termin anfragen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Shippori+Mincho+B1:wght@400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="is-loading">
+
+  <!-- Film grain -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ── Preloader ──────────────────────────────────────────── -->
+  <div id="preloader" aria-hidden="true">
+    <canvas id="pre-canvas"></canvas>
+    <div class="pre-rings">
+      <div class="pre-ring"></div>
+      <div class="pre-ring"></div>
+      <div class="pre-ring"></div>
+    </div>
+    <div class="pre-inner">
+      <div class="pre-line-track"><div class="pre-line"></div></div>
+      <div class="pre-text">
+        <p class="pre-kanji" aria-hidden="true">霊&nbsp;気</p>
+        <p class="pre-name">Elisa Federsel</p>
+        <p class="pre-sub">· Reiki ·</p>
+      </div>
+    </div>
+    <div class="pre-wipe"></div>
+  </div>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <header id="nav" class="nav">
+    <nav class="nav-inner">
+      <a href="#hero" class="nav-logo">Elisa <span>Federsel</span></a>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#reiki">Was ist Reiki?</a></li>
+        <li><a href="#ueber-mich">Über mich</a></li>
+        <li><a href="#angebot">Angebot</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#kontakt" class="nav-cta magnetic">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <section id="hero" class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Energiearbeit · Nervensystemregulierung · Entspannung</p>
+      <h1 class="hero-title">
+        <span class="split-line"><span class="split-inner">Komm an.</span></span>
+        <span class="split-line"><span class="split-inner">Lass los.</span></span>
+        <span class="split-line italic"><span class="split-inner">Fühl dich.</span></span>
+      </h1>
+      <p class="hero-desc">Reiki-Behandlungen für Körper, Geist &amp; Seele</p>
+      <a href="#kontakt" class="btn btn-hero magnetic">
+        <span class="btn-text">Termin anfragen</span>
+        <span class="btn-arr">→</span>
+      </a>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── Lauftext ─────────────────────────────────────────────── -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>fördert die körpereigenen Selbstheilungskräfte &nbsp;·&nbsp; unterstützt jede Therapie &nbsp;·&nbsp; wirkt reinigend und entgiftend &nbsp;·&nbsp; mindert Ängste &nbsp;·&nbsp; wirkt schmerzlindernd &nbsp;·&nbsp; führt zu Stressabbau und tiefer Entspannung &nbsp;·&nbsp; fördert Konzentration und Kreativität &nbsp;·&nbsp; erhöht das Selbstvertrauen &nbsp;·&nbsp; </span>
+      <span aria-hidden="true">fördert die körpereigenen Selbstheilungskräfte &nbsp;·&nbsp; unterstützt jede Therapie &nbsp;·&nbsp; wirkt reinigend und entgiftend &nbsp;·&nbsp; mindert Ängste &nbsp;·&nbsp; wirkt schmerzlindernd &nbsp;·&nbsp; führt zu Stressabbau und tiefer Entspannung &nbsp;·&nbsp; fördert Konzentration und Kreativität &nbsp;·&nbsp; erhöht das Selbstvertrauen &nbsp;·&nbsp; </span>
+    </div>
+  </div>
+
+  <!-- ── Was ist Reiki? ──────────────────────────────────────── -->
+  <section id="reiki" class="section s-light">
+    <div class="reiki-kanji" aria-hidden="true">霊&nbsp;気</div>
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow" data-anim="fade-up">Die Methode</p>
+        <h2 data-anim="fade-up" data-delay="0.1">Was ist Reiki?</h2>
+      </div>
+      <p class="sec-lead" data-anim="fade-up" data-delay="0.15">
+        Reiki ist eine japanische Heilmethode, bei der durch sanftes Handauflegen Energie übertragen wird, um Körper, Geist und Seele ins Gleichgewicht zu bringen. Das Wort „Reiki" setzt sich aus „Rei" – universell – und „Ki" – Lebensenergie – zusammen. Reiki beschreibt eine sanfte, tief entspannende Form der Energiearbeit, die innere Ruhe und Selbstheilung unterstützen kann.
+      </p>
+
+      <div class="cards-grid">
+        <div class="card glass card--koerper" data-anim="card" data-delay="0">
+          <div class="card-glow" aria-hidden="true"></div>
+          <span class="card-num">I</span>
+          <h3>Körper</h3>
+          <p>Reiki fördert tiefe Entspannung, unterstützt das Nervensystem, stärkt die Selbstheilungskräfte und kann körperliche Beschwerden lindern.</p>
+        </div>
+        <div class="card glass card--geist" data-anim="card" data-delay="0.12">
+          <div class="card-glow" aria-hidden="true"></div>
+          <span class="card-num">II</span>
+          <h3>Geist</h3>
+          <p>Gedanken beruhigen sich, emotionale Blockaden lösen sich — du findest wieder Zugang zu dir selbst.</p>
+        </div>
+        <div class="card glass card--seele" data-anim="card" data-delay="0.24">
+          <div class="card-glow" aria-hidden="true"></div>
+          <span class="card-num">III</span>
+          <h3>Seele</h3>
+          <p>Auf einer tieferen Ebene wirkt Reiki verbindend — mit dem eigenen Inneren, mit dem Moment, mit dem Leben.</p>
+        </div>
+      </div>
+
+      <blockquote class="banderolle banderolle-quote" data-anim="fade-up">
+        <span>„Reiki erinnert dich daran,<br>dass alles, was du suchst, bereits in dir liegt."</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ── Über mich ───────────────────────────────────────────── -->
+  <section id="ueber-mich" class="section s-testimonial">
+    <div class="container about-grid">
+      <div class="about-img-col" data-anim="image-wipe">
+        <div class="about-img-frame">
+          <div class="about-img-inner"></div>
+          <canvas id="about-canvas" aria-hidden="true"></canvas>
+          <div class="about-img-shade" aria-hidden="true"></div>
+        </div>
+        <p class="about-badge" data-anim="fade-up" data-delay="0.3">
+          <span>Reiki-Praktizierende</span><span class="dot">·</span><span>seit 2026</span>
+        </p>
+      </div>
+      <div class="about-txt">
+        <p class="eyebrow" data-anim="fade-up">Über mich</p>
+        <h2 data-anim="fade-up" data-delay="0.1">Hallo,<br>ich bin Elisa.</h2>
+        <div class="about-body" data-anim="fade-up" data-delay="0.2">
+          <p>Ich bin 24 Jahre alt, Zwergpudel-Mama und liebe alles, was mit Ruhe, Achtsamkeit und innerer Balance zu tun hat. Yoga, Meditation und die Verbindung zur Natur begleiten mich schon lange und sind ein wichtiger Teil meines Alltags.</p>
+          <p>Zu Reiki kam ich durch meine Tante: Nach einer Reiki-Behandlung war ich tief bewegt. Durch ihre achtsamen Berührungen durfte mein Nervensystem endlich loslassen, emotionaler Ballast löste sich und etwas in mir hatte sich spürbar verändert. Diese Erfahrung hat mich nicht mehr losgelassen — und mir war klar, dass ich diesen Weg selbst gehen möchte.</p>
+          <p>Seit 2026 bin ich in Reiki eingeweiht und darf dieses Geschenk nun selbst weitergeben. Es erfüllt mich mit Dankbarkeit, Menschen einen Raum für Ruhe, Entspannung und innere Balance schenken zu können und sie achtsam auf ihrem ganz persönlichen Weg zu begleiten.</p>
+        </div>
+        <p class="about-sig" data-anim="fade-up" data-delay="0.3">
+          <em>Berührung in Stille kann mehr sagen als tausend Worte.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Angebot & Preise ────────────────────────────────────── -->
+  <section id="angebot" class="section s-light">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow" data-anim="fade-up">Was dich erwartet</p>
+        <h2 data-anim="fade-up" data-delay="0.1">Angebot &amp; Ablauf</h2>
+      </div>
+
+      <div class="angebot-grid">
+        <div class="steps">
+          <div class="step" data-anim="slide-right" data-delay="0">
+            <div class="step-mark">
+              <span class="step-n">01</span>
+              <div class="step-line"></div>
+            </div>
+            <div>
+              <h4>Ankommen &amp; Räucherritual</h4>
+              <p>Du kommst in Ruhe an, ich erkläre dir den Ablauf und stelle dir ein paar einfühlsame Fragen: Was ist gerade da, worauf darf ich heute achten? Danach räuchere ich dich mit Palo Santo sanft ab und begleite dich in die Reiki-Behandlung.</p>
+            </div>
+          </div>
+          <div class="step" data-anim="slide-right" data-delay="0.12">
+            <div class="step-mark">
+              <span class="step-n">02</span>
+              <div class="step-line"></div>
+            </div>
+            <div>
+              <h4>Behandlung</h4>
+              <p>Du liegst bekleidet und entspannt auf der Massageliege. Durch sanftes Handauflegen – beginnend am Kopf, über die Chakren bis zu den Füßen – darf dein Nervensystem loslassen und tiefe Entspannung entstehen. Dauer 45–60 Minuten.</p>
+            </div>
+          </div>
+          <div class="step" data-anim="slide-right" data-delay="0.24">
+            <div class="step-mark">
+              <span class="step-n">03</span>
+            </div>
+            <div>
+              <h4>Nachgespräch</h4>
+              <p>Wir tauschen uns aus — was hast du gespürt? Was hat sich gezeigt? Ein wertvoller Teil des Prozesses.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="preis-card" data-anim="scale-in">
+          <canvas id="preis-canvas" aria-hidden="true"></canvas>
+          <div class="preis-glow" aria-hidden="true"></div>
+          <p class="preis-label">Eine Sitzung</p>
+          <div class="preis-num-wrap">
+            <span class="preis-num" data-counter="39">0</span>
+            <span class="preis-cur">€</span>
+          </div>
+          <p class="preis-info">inkl. Räucherritual &amp; Nachgespräch</p>
+          <a href="https://wa.me/4917624001748" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+            <span class="btn-text">Termin anfragen</span>
+            <span class="btn-arr">→</span>
+          </a>
+          <p class="preis-note">Auf WhatsApp schreiben</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonial ───────────────────────────────────────────── -->
+  <section class="section s-testimonial">
+    <canvas id="testimonial-canvas" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow" data-anim="fade-up">Erfahrungsbericht</p>
+        <h2 data-anim="fade-up" data-delay="0.1">Was andere erleben</h2>
+      </div>
+      <div class="testimonial-card" data-anim="fade-up" data-delay="0.15">
+        <p class="testimonial-quote">
+          Ich war Reiki gegenüber ehrlich gesagt erst ziemlich skeptisch. Irgendwo zwischen „na ja, Hokuspokus" und „okay, ich probiere es einfach mal aus". Und was soll ich sagen? Es hat mich vollkommen überrascht.
+        </p>
+        <p class="testimonial-quote">
+          Während der Reiki-Sitzungen habe ich Dinge gespürt, die ich kaum in Worte fassen kann. Mein Körper hat auf unterschiedlichste Weise reagiert — von tiefem Weinen über plötzliches, fast hysterisches Lachen bis hin zu einem unglaublichen Gefühl von innerem Frieden. Es war, als würden sich angestaute Emotionen lösen, ohne dass ich etwas steuern oder erklären konnte.
+        </p>
+        <p class="testimonial-quote">
+          Besonders faszinierend war für mich, dass jede Berührung an bestimmten Stellen etwas anderes ausgelöst hat. Schmerz, Loslassen, Ruhe, Frieden — alles war dabei. Ich habe besser geschlafen, meine Hüftschmerzen wurden deutlich weniger und ich habe mich emotional viel ruhiger und ausgeglichener gefühlt.
+        </p>
+        <p class="testimonial-quote">
+          Ich kann nicht erklären, was genau passiert ist. Aber ich kann sagen: Es hat etwas in mir bewegt. Etwas Gutes. Wer offen dafür ist, sich selbst einmal anders zu spüren, dem kann ich Reiki von Herzen empfehlen. Man muss es nicht verstehen — man sollte es einfach fühlen. ✨
+        </p>
+        <p class="testimonial-author">— Nancy, 51</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ────────────────────────────────────────────────── -->
+  <section id="faq" class="section s-warm">
+    <div class="container faq-wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-anim="fade-up">Häufige Fragen</p>
+        <h2 data-anim="fade-up" data-delay="0.1">FAQ</h2>
+      </div>
+      <div class="accordion" data-anim="fade-up" data-delay="0.15">
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false">
+            <span>Für wen ist Reiki geeignet?</span><span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body">
+            <p>Reiki ist für alle Menschen geeignet — unabhängig von Alter, Glauben oder Zustand. Es kann ergänzend zu medizinischen Behandlungen genutzt werden und hilft besonders bei Stress, innerer Unruhe oder emotionalen Themen.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false">
+            <span>Was soll ich mitbringen?</span><span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body">
+            <p>Bitte bring ein großes Handtuch zur Behandlung mit und trage bequeme Kleidung, damit du dich maximal entspannen kannst.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false">
+            <span>Was werde ich spüren?</span><span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body">
+            <p>Reiki wird von jedem Menschen unterschiedlich wahrgenommen und wirkt individuell. Manche spüren ein sanftes Kribbeln oder Wärme- und Kältegefühle, andere erleben emotionale Prozesse oder tiefe Entspannung.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false">
+            <span>Wo finden die Sitzungen statt?</span><span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body">
+            <p>Die Behandlungen finden bei mir zuhause statt. Den genauen Ort teile ich dir gerne per WhatsApp mit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Kontakt ─────────────────────────────────────────────── -->
+  <section id="kontakt" class="section s-dark">
+    <div class="container kontakt-inner">
+      <p class="eyebrow kontakt-ey" data-anim="fade-up">Lass uns in Kontakt treten</p>
+      <h2 class="kontakt-title" data-anim="fade-up" data-delay="0.1">
+        Bereit für<br><em>deine erste Sitzung?</em>
+      </h2>
+      <p class="kontakt-desc" data-anim="fade-up" data-delay="0.2">
+        Schreib mir einfach auf WhatsApp — ich antworte dir so schnell wie möglich.
+      </p>
+      <a href="https://wa.me/4917624001748" target="_blank" rel="noopener"
+         class="btn btn-wa magnetic" data-anim="fade-up" data-delay="0.3">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.528 5.861L0 24l6.335-1.502A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.028-1.383l-.36-.214-3.732.885.928-3.618-.235-.372A9.781 9.781 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+        </svg>
+        <span class="btn-text">Auf WhatsApp schreiben</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-logo">Elisa Federsel</p>
+      <p class="footer-sub">· Reiki ·</p>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <p class="footer-copy">© 2026 Elisa Federsel</p>
+    </div>
+  </footer>
+
+  <!-- CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
