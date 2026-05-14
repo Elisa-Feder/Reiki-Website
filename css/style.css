@@ -888,21 +888,48 @@ body.cur-hidden #cursor-ring { opacity: 0; }
   .nav-links.open { display: flex; }
   .nav-links a { font-size: 1.05rem; }
 
-  .cards-grid     { grid-template-columns: 1fr; }
+  .cards-grid     { grid-template-columns: 1fr; gap: 1rem; }
   .about-grid     { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-img-col  { max-width: 360px; margin: 0 auto; width: 100%; }
   .angebot-grid   { grid-template-columns: 1fr; }
   .preis-card     { position: static; }
+  .faq-wrap       { max-width: 100%; }
+  .testimonial-card { padding: 2rem 1.5rem; }
+  .reiki-kanji    { font-size: 5rem; right: 2%; }
 }
 
 @media (max-width: 600px) {
-  h2 { font-size: 2.2rem; }
-  .kontakt-title { font-size: 2.2rem; }
-  .hero-content  { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .step          { grid-template-columns: 50px 1fr; gap: 1rem; }
-  .preis-num     { font-size: 4rem; }
-  .banderolle    { padding: 2rem 1.5rem; }
+  h2 { font-size: 2rem; }
+  .kontakt-title  { font-size: 2rem; }
+  .hero-content   { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .hero-eyebrow   { font-size: 0.55rem; letter-spacing: 0.14em; }
+  .hero-desc      { font-size: 0.95rem; }
+
+  .step           { grid-template-columns: 44px 1fr; gap: 0.75rem; }
+  .preis-num      { font-size: 4rem; }
+
+  .banderolle     { padding: 2rem 1.5rem; }
   .banderolle span { font-size: 1.3rem; }
+  .banderolle-quote { padding: 2.5rem 1.5rem; }
+  .banderolle-quote span { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+
+  .card           { padding: 2rem 1.5rem; }
+  .sec-lead       { font-size: 1rem; }
+
+  .reiki-kanji    { font-size: 3.5rem; top: 2rem; }
+
+  .marquee-track span { font-size: 0.88rem; }
+
+  .testimonial-card  { padding: 1.75rem 1.25rem; }
+  .testimonial-quote { font-size: 0.95rem; }
+
+  .pre-ring:nth-child(1) { width: 100px; height: 100px; }
+  .pre-ring:nth-child(2) { width: 170px; height: 170px; }
+  .pre-ring:nth-child(3) { width: 240px; height: 240px; }
+
+  .about-sig      { font-size: 1rem; }
+  .preis-card     { padding: 2rem 1.5rem; }
+  .section        { padding: clamp(3.5rem, 8vw, 6rem) 0; }
 }
 
 /* ── Kanji Wasserzeichen ────────────────────────────────────── */
