@@ -961,15 +961,20 @@ body.cur-hidden #cursor-ring { opacity: 0; }
 }
 .marquee-track {
   display: flex;
-  white-space: nowrap;
-  animation: marquee 8s linear infinite;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: marquee 18s linear infinite;
 }
 .marquee-track span {
+  display: block;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--f-serif);
   font-size: 1.05rem;
   font-style: italic;
   color: var(--c-text);
   letter-spacing: 0.02em;
+  padding-right: 2rem;
 }
 @keyframes marquee {
   from { transform: translateX(0); }
