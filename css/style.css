@@ -916,7 +916,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
   .card           { padding: 2rem 1.5rem; }
   .sec-lead       { font-size: 1rem; }
 
-  .reiki-kanji    { font-size: 3.5rem; top: 2rem; }
+  .reiki-kanji    { display: none; }
 
   .marquee-track span { font-size: 0.88rem; }
 
@@ -962,7 +962,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
 .marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marquee 38s linear infinite;
+  animation: marquee 22s linear infinite;
 }
 .marquee-track span {
   font-family: var(--f-serif);
