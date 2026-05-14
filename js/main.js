@@ -517,11 +517,11 @@ function initMarquee() {
   if (!track) return;
   const firstSpan = track.querySelector('span');
   let x = 0;
-  let spanWidth = firstSpan.offsetWidth;
-  window.addEventListener('resize', () => { spanWidth = firstSpan.offsetWidth; }, { passive: true });
+  let spanWidth = firstSpan.getBoundingClientRect().width;
+  window.addEventListener('resize', () => { spanWidth = firstSpan.getBoundingClientRect().width; }, { passive: true });
   (function tick() {
-    x -= 1.5;
-    if (x <= -spanWidth) x = 0;
+    x -= 0.7;
+    if (x <= -spanWidth) x += spanWidth;
     track.style.transform = `translateX(${x}px)`;
     requestAnimationFrame(tick);
   })();
