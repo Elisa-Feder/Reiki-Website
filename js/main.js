@@ -520,7 +520,7 @@ function initMarquee() {
   let spanWidth = firstSpan.getBoundingClientRect().width;
   window.addEventListener('resize', () => { spanWidth = firstSpan.getBoundingClientRect().width; }, { passive: true });
   (function tick() {
-    x -= 0.7;
+    x -= 0.45;
     if (x <= -spanWidth) x += spanWidth;
     track.style.transform = `translateX(${x}px)`;
     requestAnimationFrame(tick);
