@@ -962,7 +962,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
 .marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marquee 22s linear infinite;
+  animation: marquee 12s linear infinite;
 }
 .marquee-track span {
   font-family: var(--f-serif);
