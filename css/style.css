@@ -962,8 +962,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
 .marquee-track {
   display: flex;
   flex-wrap: nowrap;
-  width: max-content;
-  animation: marquee 18s linear infinite;
+  will-change: transform;
 }
 .marquee-track span {
   display: block;
@@ -974,11 +973,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
   font-style: italic;
   color: var(--c-text);
   letter-spacing: 0.02em;
-  padding-right: 2rem;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  padding-right: 3rem;
 }
 
 /* ── Banderolle rein typografisch ──────────────────────────── */

@@ -511,11 +511,28 @@ function initMiniOrbs(canvasId, count = 32) {
   })();
 }
 
+// ── Marquee JS ───────────────────────────────────────────────
+function initMarquee() {
+  const track = document.querySelector('.marquee-track');
+  if (!track) return;
+  const firstSpan = track.querySelector('span');
+  let x = 0;
+  let spanWidth = firstSpan.offsetWidth;
+  window.addEventListener('resize', () => { spanWidth = firstSpan.offsetWidth; }, { passive: true });
+  (function tick() {
+    x -= 1.5;
+    if (x <= -spanWidth) x = 0;
+    track.style.transform = `translateX(${x}px)`;
+    requestAnimationFrame(tick);
+  })();
+}
+
 // ── Bootstrap ─────────────────────────────────────────────────
 initNav();
 initMobileNav();
 initAccordion();
 initMagnetic();
+initMarquee();
 initMiniOrbs('preis-canvas', 32);
 initMiniOrbs('about-canvas', 24);
 initMiniOrbs('testimonial-canvas', 40);
