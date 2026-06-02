@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elisa Federsel · Reiki</title>
   <meta name="description" content="Reiki-Behandlungen mit Elisa Federsel — für Körper, Geist & Seele. Jetzt Termin anfragen." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Shippori+Mincho+B1:wght@400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="is-loading">
+
+  <!-- Ambient orbs canvas -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
 
   <!-- Film grain -->
   <div class="grain" aria-hidden="true"></div>
@@ -50,10 +51,12 @@
         <li><a href="#ueber-mich">Über mich</a></li>
         <li><a href="#angebot">Angebot</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#kontakt" class="nav-cta magnetic">Kontakt</a></li>
       </ul>
     </nav>
   </header>
+
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
 
   <!-- ── Hero ───────────────────────────────────────────────── -->
   <section id="hero" class="hero">
@@ -88,6 +91,13 @@
     </div>
   </div>
 
+  <!-- Wave Divider: Marquee → Reiki -->
+  <div class="wave-divider wave-divider--light" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 L0,80 Z" fill="#F4EFE8"/>
+    </svg>
+  </div>
+
   <!-- ── Was ist Reiki? ──────────────────────────────────────── -->
   <section id="reiki" class="section s-light">
     <div class="reiki-kanji" aria-hidden="true">霊&nbsp;気</div>
@@ -96,7 +106,7 @@
         <p class="eyebrow" data-anim="fade-up">Die Methode</p>
         <h2 data-anim="fade-up" data-delay="0.1">Was ist Reiki?</h2>
       </div>
-      <p class="sec-lead" data-anim="fade-up" data-delay="0.15">
+      <p class="sec-lead" data-anim="fade-up" data-delay="0.15" data-word-reveal>
         Reiki ist eine japanische Heilmethode, bei der durch sanftes Handauflegen Energie übertragen wird, um Körper, Geist und Seele ins Gleichgewicht zu bringen. Das Wort „Reiki" setzt sich aus „Rei" – universell – und „Ki" – Lebensenergie – zusammen. Reiki beschreibt eine sanfte, tief entspannende Form der Energiearbeit, die innere Ruhe und Selbstheilung unterstützen kann.
       </p>
 
@@ -129,6 +139,7 @@
 
   <!-- ── Über mich ───────────────────────────────────────────── -->
   <section id="ueber-mich" class="section s-testimonial">
+    <div class="s-testimonial__bg" aria-hidden="true"></div>
     <div class="container about-grid">
       <div class="about-img-col" data-anim="image-wipe">
         <div class="about-img-frame">
@@ -149,13 +160,13 @@
           <p>Seit 2026 bin ich in Reiki eingeweiht und darf dieses Geschenk nun selbst weitergeben. Es erfüllt mich mit Dankbarkeit, Menschen einen Raum für Ruhe, Entspannung und innere Balance schenken zu können und sie achtsam auf ihrem ganz persönlichen Weg zu begleiten.</p>
         </div>
         <p class="about-sig" data-anim="fade-up" data-delay="0.3">
-          <em>Berührung in Stille kann mehr sagen als tausend Worte.</em>
+          <em data-word-reveal>„Berührung in Stille kann mehr sagen als tausend Worte."</em>
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ── Angebot & Preise ────────────────────────────────────── -->
+  <!-- ── Angebot & Ablauf ─────────────────────────────────────── -->
   <section id="angebot" class="section s-light">
     <div class="container">
       <div class="sec-head">
@@ -196,31 +207,127 @@
           </div>
         </div>
 
+        <!-- alte preis-card (sticky) bleibt als Platzhalter für das Grid-Layout -->
         <div class="preis-card" data-anim="scale-in">
           <canvas id="preis-canvas" aria-hidden="true"></canvas>
           <div class="preis-glow" aria-hidden="true"></div>
-          <p class="preis-label">Eine Sitzung</p>
+          <p class="preis-label">Energieausgleich</p>
           <div class="preis-num-wrap">
-            <span class="preis-num" data-counter="39">0</span>
+            <span class="preis-num" data-counter="59">0</span>
             <span class="preis-cur">€</span>
           </div>
-          <p class="preis-info">inkl. Räucherritual &amp; Nachgespräch</p>
-          <a href="https://wa.me/4917624001748" target="_blank" rel="noopener" class="btn btn-primary magnetic">
-            <span class="btn-text">Termin anfragen</span>
-            <span class="btn-arr">→</span>
+          <p class="preis-info">pro Einzel-Session inkl. Räucherritual &amp; Nachgespräch</p>
+          <a href="#preise" class="btn btn-primary magnetic">
+            <span class="btn-text">Alle Preise</span>
+            <span class="btn-arr">↓</span>
           </a>
-          <p class="preis-note">Auf WhatsApp schreiben</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Wave Divider: Angebot → Preise -->
+  <div class="wave-divider wave-divider--dark" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C200,70 400,0 600,35 C800,70 1000,5 1200,40 C1320,60 1400,20 1440,30 L1440,80 L0,80 Z" fill="#EDE5DA"/>
+    </svg>
+  </div>
+
+  <!-- ── Preise ────────────────────────────────────────────────── -->
+  <section id="preise" class="section s-light" style="padding-top:4rem;">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow" data-anim="fade-up">Meine Angebote</p>
+        <h2 data-anim="fade-up" data-delay="0.1">Energieausgleich</h2>
+      </div>
+
+      <div class="preise-grid">
+
+        <!-- Schnupperstunde -->
+        <div class="preis-card" data-anim="scale-in" data-delay="0">
+          <div class="preis-glow" aria-hidden="true"></div>
+          <p class="preis-badge">Schnupperstunde</p>
+          <div class="preis-num-wrap">
+            <span class="preis-num-static">30 Min kostenlos</span>
+          </div>
+          <p class="preis-info">Unverbindlich kennenlernen &amp; erste Fragen klären</p>
+          <a href="https://wa.me/4917624001748" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+            <span class="btn-text">Anfragen</span>
+            <span class="btn-arr">→</span>
+          </a>
+          <p class="preis-note">Auf WhatsApp schreiben</p>
+        </div>
+
+        <!-- Erstgespräch + Session -->
+        <div class="preis-card" data-anim="scale-in" data-delay="0.08">
+          <div class="preis-glow" aria-hidden="true"></div>
+          <p class="preis-badge">Erstbehandlung</p>
+          <p class="preis-label">Erstgespräch + Session</p>
+          <div class="preis-num-wrap">
+            <span class="preis-num" data-counter="75">0</span>
+            <span class="preis-cur">€</span>
+          </div>
+          <p class="preis-info">Inkl. ausführlichem Erstgespräch, Reiki-Behandlung &amp; Nachgespräch</p>
+          <a href="https://wa.me/4917624001748" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+            <span class="btn-text">Termin buchen</span>
+            <span class="btn-arr">→</span>
+          </a>
+          <p class="preis-note">Auf WhatsApp schreiben</p>
+        </div>
+
+        <!-- Einzel-Session -->
+        <div class="preis-card" data-anim="scale-in" data-delay="0.16">
+          <div class="preis-glow" aria-hidden="true"></div>
+          <p class="preis-badge">Einzeltermin</p>
+          <p class="preis-label">Einzel-Session</p>
+          <div class="preis-num-wrap">
+            <span class="preis-num" data-counter="59">0</span>
+            <span class="preis-cur">€</span>
+          </div>
+          <p class="preis-info">inkl. Räucherritual &amp; Nachgespräch</p>
+          <a href="https://wa.me/4917624001748" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+            <span class="btn-text">Termin buchen</span>
+            <span class="btn-arr">→</span>
+          </a>
+          <p class="preis-note">Auf WhatsApp schreiben</p>
+        </div>
+
+        <!-- 3er-Paket -->
+        <div class="preis-card" data-anim="scale-in" data-delay="0.24">
+          <div class="preis-glow" aria-hidden="true"></div>
+          <p class="preis-badge">Sparpaket</p>
+          <p class="preis-label">3er-Paket</p>
+          <p class="preis-note" style="margin-bottom:0.5rem;margin-top:-0.5rem;">Du sparst 12 €</p>
+          <div class="preis-num-wrap">
+            <span class="preis-num" data-counter="165">0</span>
+            <span class="preis-cur">€</span>
+          </div>
+          <p class="preis-strike">statt 177 €</p>
+          <p class="preis-info">3 vollständige Reiki-Sessions — ideal für einen nachhaltigen Prozess</p>
+          <a href="https://wa.me/4917624001748" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+            <span class="btn-text">Paket sichern</span>
+            <span class="btn-arr">→</span>
+          </a>
+          <p class="preis-note">Auf WhatsApp schreiben</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider: Preise → Testimonial -->
+  <div class="wave-divider wave-divider--warm" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,50 C150,10 300,70 480,35 C660,0 840,65 1020,35 C1200,5 1350,55 1440,40 L1440,80 L0,80 Z" fill="#F4EFE8"/>
+    </svg>
+  </div>
+
   <!-- ── Testimonial ───────────────────────────────────────────── -->
-  <section class="section s-testimonial">
+  <section class="section s-testimonial s-testimonial--static">
     <canvas id="testimonial-canvas" aria-hidden="true"></canvas>
     <div class="container">
       <div class="sec-head">
-        <p class="eyebrow" data-anim="fade-up">Erfahrungsbericht</p>
+        <p class="eyebrow" data-anim="fade-up">Erfahrungsberichte</p>
         <h2 data-anim="fade-up" data-delay="0.1">Was andere erleben</h2>
       </div>
       <div class="testimonial-card" data-anim="fade-up" data-delay="0.15">
@@ -275,7 +382,7 @@
         </div>
         <div class="acc-item">
           <button class="acc-btn" aria-expanded="false">
-            <span>Wo finden die Sitzungen statt?</span><span class="acc-icon" aria-hidden="true"></span>
+            <span>Wo findet die Behandlung statt?</span><span class="acc-icon" aria-hidden="true"></span>
           </button>
           <div class="acc-body">
             <p>Die Behandlungen finden bei mir zuhause statt. Den genauen Ort teile ich dir gerne per WhatsApp mit.</p>
@@ -286,11 +393,12 @@
   </section>
 
   <!-- ── Kontakt ─────────────────────────────────────────────── -->
-  <section id="kontakt" class="section s-dark">
+  <section id="kontakt" class="section s-dark s-cta">
+    <canvas id="cta-canvas" aria-hidden="true"></canvas>
     <div class="container kontakt-inner">
       <p class="eyebrow kontakt-ey" data-anim="fade-up">Lass uns in Kontakt treten</p>
-      <h2 class="kontakt-title" data-anim="fade-up" data-delay="0.1">
-        Bereit für<br><em>deine erste Sitzung?</em>
+      <h2 class="kontakt-title" data-anim="fade-up" data-delay="0.1" data-word-reveal>
+        Bereit für deine erste Reiki-Erfahrung?
       </h2>
       <p class="kontakt-desc" data-anim="fade-up" data-delay="0.2">
         Schreib mir einfach auf WhatsApp — ich antworte dir so schnell wie möglich.
@@ -318,6 +426,23 @@
       <p class="footer-copy">© 2026 Elisa Federsel</p>
     </div>
   </footer>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" aria-live="polite" role="dialog" aria-label="Cookie-Einstellungen">
+    <div class="cookie-content">
+      <h3 class="cookie-title">Cookies &amp; Privatsphäre</h3>
+      <p class="cookie-text">Diese Website verwendet Cookies, um dir das beste Erlebnis zu bieten. Du kannst jederzeit deine Einstellungen anpassen.</p>
+      <div class="cookie-actions">
+        <button id="cookie-accept" class="btn btn-primary cookie-btn">
+          <span class="btn-text">Akzeptieren</span>
+        </button>
+        <button id="cookie-necessary" class="btn btn-ghost cookie-btn">
+          <span class="btn-text">Nur notwendige</span>
+        </button>
+        <a href="datenschutz.html" class="cookie-link">Mehr erfahren</a>
+      </div>
+    </div>
+  </div>
 
   <!-- CDN Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

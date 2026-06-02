@@ -47,6 +47,56 @@ lenis.stop(); // hold until preloader done
   document.addEventListener('mouseenter', () => document.body.classList.remove('cur-hidden'));
 })();
 
+// ── Card hover lift ──────────────────────────────────────────
+function initCardHover() {
+  // Körper / Geist / Seele
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { y: -12, scale: 1.06, duration: 0.4, ease: 'power3.out', overwrite: true });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { y: 0, scale: 1, duration: 0.55, ease: 'power3.out', overwrite: true });
+    });
+  });
+
+  // Preiskarten
+  document.querySelectorAll('.preise-grid .preis-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { y: -10, scale: 1.04, duration: 0.4, ease: 'power3.out', overwrite: true });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { y: 0, scale: 1, duration: 0.55, ease: 'power3.out', overwrite: true });
+    });
+  });
+}
+
+// ── About photo tilt on mouse ────────────────────────────────
+function initAboutTilt() {
+  const frame = document.querySelector('.about-img-frame');
+  if (!frame || !window.matchMedia('(hover: hover)').matches) return;
+
+  frame.addEventListener('mousemove', e => {
+    const r  = frame.getBoundingClientRect();
+    const x  = (e.clientX - r.left) / r.width  - 0.5;  // -0.5 → 0.5
+    const y  = (e.clientY - r.top)  / r.height - 0.5;
+    gsap.to(frame, {
+      rotateY: x * 8,
+      rotateX: -y * 6,
+      duration: 0.6,
+      ease: 'power2.out',
+      transformPerspective: 900,
+      transformOrigin: 'center center',
+    });
+  });
+
+  frame.addEventListener('mouseleave', () => {
+    gsap.to(frame, {
+      rotateY: 0, rotateX: 0,
+      duration: 0.9, ease: 'power3.out',
+    });
+  });
+}
+
 // ── Magnetic buttons ─────────────────────────────────────────
 function initMagnetic() {
   document.querySelectorAll('.magnetic').forEach(btn => {
@@ -162,9 +212,46 @@ function initHeroParallax() {
   });
 }
 
+// ── Section background parallax ──────────────────────────────
+function initSectionParallax() {
+  // Über-mich Hintergrund-Parallax
+  const testimonialBg = document.querySelector('.s-testimonial__bg');
+  if (testimonialBg) {
+    gsap.fromTo(testimonialBg,
+      { y: '-15%' },
+      {
+        y: '15%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.s-testimonial',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        }
+      }
+    );
+  }
+
+  // Banderolle mit Bild
+  const banderolleImg = document.querySelector('.banderolle-img');
+  if (banderolleImg) {
+    gsap.to(banderolleImg, {
+      backgroundPositionY: '70%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: banderolleImg,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      }
+    });
+  }
+}
+
 // ── Scroll-triggered animations ──────────────────────────────
 function initScrollAnims() {
   initHeroParallax();
+  initSectionParallax();
 
   // Generic fade-up for [data-anim="fade-up"]
   gsap.utils.toArray('[data-anim="fade-up"]').forEach(el => {
@@ -229,20 +316,24 @@ function initScrollAnims() {
     );
   });
 
-  // Price card scale-in
-  const preisCard = document.querySelector('[data-anim="scale-in"]');
-  if (preisCard) {
-    gsap.fromTo(preisCard,
-      { opacity: 0, scale: 0.92, y: 20 },
-      { opacity: 1, scale: 1, y: 0,
-        duration: 1.0, ease: 'power3.out',
-        scrollTrigger: { trigger: preisCard, start: 'top 85%' } }
-    );
-  }
+  // Price cards scale-in
+  document.querySelectorAll('[data-anim="scale-in"]').forEach((card) => {
+    const delay = parseFloat(card.dataset.delay || 0);
+    gsap.set(card, { opacity: 0, scale: 0.92, y: 20 });
+    gsap.to(card, {
+      opacity: 1, scale: 1, y: 0,
+      duration: 1.0, delay, ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 105%',
+        once: true,
+        onEnter: () => gsap.to(card, { opacity: 1, scale: 1, y: 0, duration: 1.0, delay, ease: 'power3.out' }),
+      }
+    });
+  });
 
-  // Price counter
-  const counter = document.querySelector('[data-counter]');
-  if (counter) {
+  // Price counters
+  document.querySelectorAll('[data-counter]').forEach(counter => {
     const target = parseInt(counter.dataset.counter, 10);
     ScrollTrigger.create({
       trigger: counter,
@@ -255,7 +346,7 @@ function initScrollAnims() {
         });
       },
     });
-  }
+  });
 
   // Accordion section
   gsap.fromTo('.accordion',
@@ -351,8 +442,11 @@ function initPreloader() {
       preloader.style.display = 'none';
       lenis.start();
       playHeroAnim();
+      initCookieBanner();
       initParticles();
       initScrollAnims();
+      initSectionColorShift();
+      initWordReveal();
     }
   })
   .to(line, {
@@ -527,13 +621,275 @@ function initMarquee() {
   })();
 }
 
+// ── Effekt 2: Ambient Orbs Canvas ────────────────────────────
+function initAmbientOrbs() {
+  const canvas = document.getElementById('ambient-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  class AmbientOrb {
+    constructor() { this.reset(true); }
+    reset(initial) {
+      this.x      = Math.random() * canvas.width;
+      this.y      = Math.random() * canvas.height;
+      this.r      = Math.random() * 60 + 20;           // 20–80px glow radius
+      this.vx     = (Math.random() - 0.5) * 0.18;     // sehr langsam
+      this.vy     = (Math.random() - 0.5) * 0.14;
+      this.maxA   = Math.random() * 0.09 + 0.03;       // 0.03–0.12 opazität
+      this.alpha  = initial ? Math.random() * this.maxA : 0;
+      this.wobble = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = Math.random() * 0.004 + 0.002;
+    }
+    tick() {
+      this.wobble += this.wobbleSpeed;
+      this.x += this.vx + Math.sin(this.wobble * 0.7) * 0.06;
+      this.y += this.vy + Math.cos(this.wobble * 0.5) * 0.05;
+      // Wrap am Rand
+      if (this.x < -this.r * 2) this.x = canvas.width  + this.r;
+      if (this.x > canvas.width  + this.r * 2) this.x = -this.r;
+      if (this.y < -this.r * 2) this.y = canvas.height + this.r;
+      if (this.y > canvas.height + this.r * 2) this.y = -this.r;
+    }
+    draw() {
+      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+      grd.addColorStop(0,   `rgba(200,169,110,${this.maxA})`);
+      grd.addColorStop(0.4, `rgba(200,169,110,${this.maxA * 0.5})`);
+      grd.addColorStop(1,   `rgba(200,169,110,0)`);
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+    }
+  }
+
+  const orbs = Array.from({ length: 25 }, () => new AmbientOrb());
+
+  (function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    orbs.forEach(o => { o.tick(); o.draw(); });
+    requestAnimationFrame(loop);
+  })();
+}
+
+// ── Effekt 3: Scroll-Fortschrittsanzeige ─────────────────────
+function initScrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const docHeight    = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const pct = scrollY / (docHeight - windowHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+}
+
+// ── Effekt 4: Sektion-Farbübergänge ──────────────────────────
+function initSectionColorShift() {
+  const sections = [
+    { selector: '#reiki',        bg: '#F4EFE8', bgBack: '#F4EFE8' },
+    { selector: '#ueber-mich',   bg: '#F4EFE8', bgBack: '#F4EFE8' },
+    { selector: '#angebot',      bg: '#EDE5DA', bgBack: '#F4EFE8' },
+    { selector: '#preise',       bg: '#2a1f18', bgBack: '#EDE5DA' },
+    { selector: '#faq',          bg: '#F4EFE8', bgBack: '#2a1f18' },
+  ];
+
+  sections.forEach(({ selector, bg, bgBack }) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 60%',
+      end: 'bottom 60%',
+      onEnter:    () => gsap.to(document.body, { backgroundColor: bg,     duration: 1.2, ease: 'power2.inOut' }),
+      onLeaveBack:() => gsap.to(document.body, { backgroundColor: bgBack, duration: 1.2, ease: 'power2.inOut' }),
+    });
+  });
+}
+
+// ── Effekt 5: Wort-für-Wort Text-Reveal ──────────────────────
+function initWordReveal() {
+  document.querySelectorAll('[data-word-reveal]').forEach(el => {
+    // Nicht doppelt initialisieren
+    if (el.dataset.wordRevealDone) return;
+    el.dataset.wordRevealDone = '1';
+
+    const originalHTML = el.innerHTML;
+    // Splitte Text in Wörter, beachte HTML-Tags
+    const text = el.textContent || '';
+    const words = text.trim().split(/\s+/);
+
+    el.innerHTML = words.map(w =>
+      `<span class="word-reveal-span" style="display:inline-block; overflow:hidden; vertical-align:bottom; margin-right:0.28em">` +
+      `<span class="word-reveal-inner" style="display:inline-block; opacity:0; transform:translateY(15px)">${w}</span>` +
+      `</span>`
+    ).join('');
+
+    const innerSpans = el.querySelectorAll('.word-reveal-inner');
+
+    // Sicherstellen dass der Container sichtbar ist (falls data-anim="fade-up" schon gesetzt)
+    gsap.set(el, { opacity: 1 });
+
+    gsap.to(innerSpans, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 86%',
+        once: true,
+      }
+    });
+  });
+}
+
+// ── Effekt 9: CTA Partikel ────────────────────────────────────
+function initCtaParticles() {
+  const canvas = document.getElementById('cta-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const COLORS = [
+    [220, 185, 130],
+    [200, 169, 110],
+    [255, 235, 190],
+    [240, 210, 155],
+    [255, 248, 220],
+  ];
+
+  class CtaOrb {
+    constructor(initial) {
+      this.initial = initial;
+      this.reset();
+    }
+    reset() {
+      this.x      = Math.random() * canvas.width;
+      this.y      = this.initial ? Math.random() * canvas.height : canvas.height + 20;
+      this.r      = Math.random() * 5.5 + 1.8;         // etwas größer als Hero
+      this.vx     = (Math.random() - 0.5) * 0.38;
+      this.vy     = -(Math.random() * 0.95 + 0.4);
+      this.age    = this.initial ? Math.floor(Math.random() * 260) : 0;
+      this.maxAge = Math.random() * 220 + 130;
+      this.maxA   = Math.random() * 0.78 + 0.25;
+      this.alpha  = 0;
+      this.rgb    = COLORS[Math.floor(Math.random() * COLORS.length)];
+      this.wobble = Math.random() * Math.PI * 2;
+    }
+    tick() {
+      this.wobble += 0.02;
+      this.x += this.vx + Math.sin(this.wobble) * 0.2;
+      this.y += this.vy;
+      this.age++;
+      const t = this.age / this.maxAge;
+      this.alpha = t < 0.15
+        ? (t / 0.15) * this.maxA
+        : t > 0.72
+          ? ((1 - t) / 0.28) * this.maxA
+          : this.maxA;
+      if (this.age > this.maxAge) { this.initial = false; this.reset(); }
+    }
+    draw() {
+      const [r, g, b] = this.rgb;
+      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 8);
+      grd.addColorStop(0,   `rgba(${r},${g},${b},${this.alpha})`);
+      grd.addColorStop(0.3, `rgba(${r},${g},${b},${this.alpha * 0.5})`);
+      grd.addColorStop(0.6, `rgba(${r},${g},${b},${this.alpha * 0.12})`);
+      grd.addColorStop(1,   `rgba(${r},${g},${b},0)`);
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r * 8, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+    }
+  }
+
+  const ctaOrbs = Array.from({ length: 40 }, (_, i) => new CtaOrb(i < 20));
+
+  (function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctaOrbs.forEach(o => { o.tick(); o.draw(); });
+    requestAnimationFrame(loop);
+  })();
+}
+
+// ── Cookie Banner ─────────────────────────────────────────────
+function initCookieBanner() {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+
+  // Falls bereits entschieden → nichts tun
+  if (localStorage.getItem('reiki-cookies-accepted')) return;
+
+  function slidOut(callback) {
+    gsap.to(banner, {
+      y: '120%',
+      opacity: 0,
+      duration: 0.55,
+      ease: 'power3.in',
+      onComplete: () => {
+        banner.remove();
+        if (callback) callback();
+      }
+    });
+  }
+
+  // Slide-in nach 1.5s Delay
+  setTimeout(() => {
+    gsap.to(banner, {
+      y: 0,
+      opacity: 1,
+      duration: 0.7,
+      ease: 'power3.out',
+    });
+  }, 1500);
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('reiki-cookies-accepted', 'all');
+    slidOut();
+  });
+
+  document.getElementById('cookie-necessary').addEventListener('click', () => {
+    localStorage.setItem('reiki-cookies-accepted', 'necessary');
+    slidOut();
+  });
+}
+
 // ── Bootstrap ─────────────────────────────────────────────────
 initNav();
 initMobileNav();
 initAccordion();
+// Smooth anchor scrolling via Lenis
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { duration: 1.6, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  });
+});
+
 initMagnetic();
+initCardHover();
+initAboutTilt();
 initMarquee();
 initMiniOrbs('preis-canvas', 32);
 initMiniOrbs('about-canvas', 24);
 initMiniOrbs('testimonial-canvas', 40);
+initAmbientOrbs();
+initScrollProgress();
+initCtaParticles();
 initPreloader();
