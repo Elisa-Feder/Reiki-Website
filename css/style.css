@@ -795,7 +795,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
 }
 .preise-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   width: 100%;
   align-items: stretch;
@@ -867,6 +867,56 @@ body.cur-hidden #cursor-ring { opacity: 0; }
 }
 .btn-ghost:hover {
   background: rgba(200,169,110,0.1);
+}
+
+/* ── Preis-Aufschlüsselung (Ersttermin) ─────────────────────── */
+.preis-aufschluss {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0.75rem 0 1.25rem;
+  font-size: 0.82rem;
+  position: relative;
+  z-index: 1;
+}
+.preis-aufschluss-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}
+.preis-aufschluss-row em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  margin-left: 0.25rem;
+}
+.preis-aufschluss-crossed {
+  text-decoration: line-through;
+  color: rgba(255,255,255,0.3);
+}
+.preis-aufschluss-row--gift {
+  color: var(--c-gold);
+}
+.preis-aufschluss-row--gift span:last-child {
+  color: var(--c-gold);
+}
+.preis-aufschluss-divider {
+  border-top: 1px solid rgba(200,169,110,0.25);
+  margin: 0.35rem 0;
+}
+.preis-aufschluss-row--total {
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 400;
+}
+.preis-aufschluss-row--total span:last-child {
+  font-size: 1.5rem;
+  color: var(--c-gold);
+  letter-spacing: -0.02em;
 }
 
 /* ── FAQ ─────────────────────────────────────────────────────── */
