@@ -555,17 +555,17 @@ body.cur-hidden #cursor-ring { opacity: 0; }
 
 .card--koerper {
   background:
-    linear-gradient(rgba(244,238,230,0.70), rgba(244,238,230,0.70)),
+    linear-gradient(rgba(244,238,230,0.88), rgba(244,238,230,0.88)),
     url('../images/K%C3%B6rper.jpeg') center/cover no-repeat;
 }
 .card--geist {
   background:
-    linear-gradient(rgba(244,238,230,0.70), rgba(244,238,230,0.70)),
+    linear-gradient(rgba(244,238,230,0.88), rgba(244,238,230,0.88)),
     url('../images/Geist.jpeg') center/cover no-repeat;
 }
 .card--seele {
   background:
-    linear-gradient(rgba(244,238,230,0.70), rgba(244,238,230,0.70)),
+    linear-gradient(rgba(244,238,230,0.88), rgba(244,238,230,0.88)),
     url('../images/Seele.PNG') center/cover no-repeat;
 }
 
@@ -577,7 +577,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
   color: var(--c-gold);
   margin-bottom: 1.25rem;
 }
-.card p { color: var(--c-muted); }
+.card p { color: var(--c-text); }
 
 .banderolle {
   background: var(--c-sage);
