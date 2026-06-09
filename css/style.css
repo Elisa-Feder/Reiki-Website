@@ -1134,6 +1134,7 @@ body.cur-hidden #cursor-ring { opacity: 0; }
   .nav-links a { font-size: 1.05rem; }
 
   .cards-grid     { grid-template-columns: 1fr; gap: 1rem; }
+  .chat-grid      { grid-template-columns: 1fr; }
   .about-grid     { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-img-col  { max-width: 360px; margin: 0 auto; width: 100%; }
   .angebot-grid   { grid-template-columns: 1fr; }
@@ -1348,9 +1349,14 @@ body { transition: background-color 0s; }
   font-weight: 400;
 }
 
+.chat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
 .chat-window {
-  max-width: 540px;
-  margin: 0 auto;
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 24px 64px rgba(0,0,0,0.45);
