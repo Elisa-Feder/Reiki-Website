@@ -1341,7 +1341,16 @@ body { transition: background-color 0s; }
 .s-chat {
   background: linear-gradient(135deg, var(--c-deep) 0%, var(--c-deep2) 100%);
   position: relative;
+  overflow: hidden;
 }
+#chat-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.s-chat .container { position: relative; z-index: 1; }
 .s-chat .eyebrow--light { color: var(--c-gold); }
 .s-chat .h2--light {
   color: #fff;
