@@ -907,47 +907,33 @@ function initChatOrbs() {
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  // Große, langsam treibende Leuchtorbs
   class ChatOrb {
-    constructor() { this.init(true); }
-    init(random) {
-      this.x     = Math.random() * canvas.width;
-      this.y     = random ? Math.random() * canvas.height : canvas.height + 60;
-      this.r     = Math.random() * 90 + 40;           // 40–130px groß
-      this.vx    = (Math.random() - 0.5) * 0.18;
-      this.vy    = -(Math.random() * 0.22 + 0.08);    // sehr langsam aufwärts
-      this.maxA  = Math.random() * 0.13 + 0.04;       // sanft, nicht zu hell
-      this.age   = random ? Math.floor(Math.random() * 400) : 0;
-      this.maxAge= Math.random() * 500 + 300;
-      this.alpha = 0;
-      this.wobble= Math.random() * Math.PI * 2;
-      // Gold- und Rosé-Töne passend zum dunklen Hintergrund
-      const palettes = [
-        [200, 169, 110],  // gold
-        [220, 190, 130],  // helles gold
-        [180, 120,  80],  // warmbraun
-        [210, 160, 100],  // bernstein
-      ];
-      this.rgb = palettes[Math.floor(Math.random() * palettes.length)];
+    constructor() { this.reset(true); }
+    reset(initial) {
+      this.x           = Math.random() * canvas.width;
+      this.y           = Math.random() * canvas.height;
+      this.r           = Math.random() * 55 + 18;          // 18–73px – wie Hero
+      this.vx          = (Math.random() - 0.5) * 0.18;
+      this.vy          = (Math.random() - 0.5) * 0.14;
+      this.maxA        = Math.random() * 0.28 + 0.12;      // heller als Hero (dunkler BG)
+      this.alpha       = initial ? Math.random() * this.maxA : 0;
+      this.wobble      = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = Math.random() * 0.004 + 0.002;
     }
     tick() {
-      this.wobble += 0.008;
-      this.x += this.vx + Math.sin(this.wobble) * 0.3;
-      this.y += this.vy;
-      this.age++;
-      const t = this.age / this.maxAge;
-      this.alpha = t < 0.2
-        ? (t / 0.2) * this.maxA
-        : t > 0.75
-          ? ((1 - t) / 0.25) * this.maxA
-          : this.maxA;
-      if (this.age > this.maxAge) this.init(false);
+      this.wobble += this.wobbleSpeed;
+      this.x += this.vx + Math.sin(this.wobble * 0.7) * 0.06;
+      this.y += this.vy + Math.cos(this.wobble * 0.5) * 0.05;
+      if (this.x < -this.r * 2) this.x = canvas.width  + this.r;
+      if (this.x > canvas.width  + this.r * 2) this.x = -this.r;
+      if (this.y < -this.r * 2) this.y = canvas.height + this.r;
+      if (this.y > canvas.height + this.r * 2) this.y = -this.r;
     }
     draw() {
       const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
-      g.addColorStop(0,   `rgba(${this.rgb},${this.alpha})`);
-      g.addColorStop(0.5, `rgba(${this.rgb},${this.alpha * 0.4})`);
-      g.addColorStop(1,   `rgba(${this.rgb},0)`);
+      g.addColorStop(0,   `rgba(200,169,110,${this.maxA})`);
+      g.addColorStop(0.4, `rgba(200,169,110,${this.maxA * 0.5})`);
+      g.addColorStop(1,   `rgba(200,169,110,0)`);
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
       ctx.fillStyle = g;
@@ -955,7 +941,7 @@ function initChatOrbs() {
     }
   }
 
-  const orbs = Array.from({ length: 10 }, () => new ChatOrb());
+  const orbs = Array.from({ length: 25 }, () => new ChatOrb());
 
   (function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
